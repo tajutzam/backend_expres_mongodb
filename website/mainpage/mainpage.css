@@ -1,0 +1,494 @@
+.navbar-background{
+    background-color: #f15e34;
+}
+
+.navbar-padding{
+    padding-left: 4%;
+}
+.profile-button{
+    width: 100%;
+    /* min-height: 100vh; */
+    background: #61bd4e;
+    color: #525252;
+    position: relative;
+    z-index: 1;
+}
+
+.profile-logo{
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 30px;
+}
+
+.navbar-list-left{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 0px;
+}
+.navbar-list-right{
+    width: 100%;
+    text-align: right;
+    margin-bottom: 0px;
+}
+.navbar-list-item{
+    display: inline-block;
+    list-style: none;
+    margin: 10px 20px;
+}
+
+.navbar-link{
+    color: #1a1919;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 3.5%;
+    width: 250px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    border-radius: 10px;
+}
+
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
+}
+
+.sub-menu{
+    background-color: #429986;
+    padding: 20px;
+    margin: 10px;
+    color: #e5e5e5;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #1d7874;
+    border-width: 1px;
+}
+
+.user-info{
+    display: flex;
+    align-items: center;
+    
+}
+
+.user-info h4{
+    font-weight: 500;
+}
+
+.user-profile-img{
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+.profile-dropdown-button{
+    margin: 0%;
+    color: #e5e5e5;
+
+}
+.sub-menu-hr{
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10px;
+}
+
+.sub-menu-link{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;
+}
+
+.sub-menu-link-hr{
+    margin-top: 3%;
+    margin-bottom: 3%;
+    margin-left: 3.5rem;
+}
+
+.sub-menu-link p{
+    width: 100%;
+}
+
+.sub-menu-link-img{
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+}
+
+.sub-menu-link span{
+    font-size: 22px;
+}
+
+.sub-menu-link:hover p{
+    font-weight: 600;
+    transform: translateX(5px);
+    transition: transform 0.5s;
+}
+.nav-profile{
+    width: 100%;
+    padding: 10px 4%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.body{
+    background-color: #f8db9a;
+}
+
+.card{
+    margin: 2rem 2rem;
+    padding: 1%;
+    margin: 1.5rem;
+}
+.card-title-background{
+    border-radius: 5px;
+    background-color:#f15e34;
+    padding: 3%;
+}
+
+.todo-label{
+    margin-left: 8.5%;
+    margin-top: 2.7%;
+    /* padding-top: 2%; */
+    font-size: 1.5rem;
+}
+
+.todo-label-complete{
+    margin-left: 4%;
+    margin-top: 2.7%;
+    /* padding-top: 2%; */
+    font-size: 1.5rem;
+}
+
+.todo-border{
+    border-style: solid;
+    border-width: thin;
+    border-radius: 35px;
+    border-color: #0087ae;
+    margin: 0 2% 1% 2%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-text{
+    margin-top: 10px;
+}
+
+.card-wrapper{
+    padding: 0.5rem;
+    border-radius: 35px;
+    margin-left: 2%
+}
+
+.due-date{
+    background-color: bisque;
+    padding: 3% 3%;
+    border-radius: 0 0 5px 5px;
+}
+
+.button-add{
+    position: relative;
+    background: #3fc4e4;
+    color: #fff;
+    font-size: 1.5rem;
+    padding: 5px 15px;
+    transition: 0.5s;
+    border-radius: 15px;
+    text-decoration: none;
+    border: none;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    margin-right: 3%
+}
+
+.button-add:hover{
+    letter-spacing: 0.25rem;   
+}
+
+.button-add:before{
+    content: '';
+    position: absolute;
+    inset: 2px;
+    background: #0087ae;
+    border-radius: 15px;
+
+}
+
+.button-add span{
+    position: relative;
+}
+
+.button-add i{
+    position: absolute;
+    inset: 0;
+    display: block;
+}
+
+.button-add i::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 80%;
+    width: 10px;
+    height: 4px;
+    background: #0087ae;
+    transform: translateX(-50%) skewX(325deg);
+    transition: 0.5s;
+}
+
+.button-add:hover i::before{
+    width: 20px;
+    left: 20%;
+}
+
+.button-add i::after{
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 10px;
+    height: 4px;
+    background: #0087ae;
+    transform: translateX(-50%) skewX(325deg);
+    transition: 0.5s;
+}
+
+.button-add:hover i::after{
+    width: 20px;
+    left: 80%;
+}
+
+.todo-button-wrapper{
+    display: flex;
+    width: 100%;
+    height: 5%;
+    justify-content: space-between;
+}
+
+.todo-label-wrapper,
+.button-add-wrapper{
+    width: 100%;
+}
+
+.todo-label-wrapper{
+    text-align: left;
+}
+.button-add-wrapper{
+    text-align: right;
+    margin-right: 3%;
+}
+
+.popup {
+    position: fixed;
+    top: -150%;
+    left: 50%;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.25);
+    width: 380px;
+    padding: 20px 30px;
+    background-color: #f8b8d3;
+    box-shadow: 2px 2px 5px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+    transition: top 0ms ease-in-out 200ms,
+                opacity 200ms ease-in-out 0ms,
+                transform 200ms ease-in-out 0ms;
+    z-index: 1;
+}
+
+.popup.active{
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    transition: top 0ms ease-in-out 0ms,
+    opacity 200ms ease-in-out 0ms,
+    transform 200ms ease-in-out 0ms;
+    
+}
+.popup .close-btn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background-color: #888;
+    color: #eee;
+    text-align: center;
+    line-height: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.popup .form h2{
+    text-align: center;
+    color: #222;
+    margin: 10px 0px 20px;
+    font-size: 25px;
+}
+
+.pupup .form .form-element{
+    margin: 15px 0px;
+    color: #222;
+}
+
+.popup .form .form-element input[type="text"],
+.popup .form .form-element input[type="password"],
+.popup .form .form-element input[type="date"]{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    outline: none;
+    border: 1px solid #ff86b8;
+    border-radius: 15px;
+}
+
+.title-color{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    outline: none;
+    border: 1px solid #ff86b8;
+    border-radius: 5px;
+}
+
+.date-color{
+    margin-top: 5px;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    outline: none;
+    border: 1px solid #ff86b8;
+    border-radius: 5px;
+}
+
+.popup .form .form-element button{
+    width: 100%;
+    height: 40px;
+    border:none;
+    outline: none;
+    font-size: 15px;
+    background: #222;
+    color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.form-element{
+    margin: 5%
+}
+
+.label-textarea{
+    margin-bottom: 3%;;
+}
+
+.text-area{
+    width: 100%;
+    outline: none;
+    border: 1px solid #ff86b8;
+    border-radius: 15px;
+    padding: 3%
+}
+
+.button-create-submit{
+    width: 100%;
+    align-items: center;
+    margin: 5%;
+}
+
+.button-new-list{
+    align-items: center;
+    margin: auto;
+    width: 90%;
+}
+
+.button-done{
+    margin-top:auto;
+    width: 100%
+}
+
+.objects{
+    background-color: #3fc4e4;
+    background-image: linear-gradient(19deg, #3fc4e4 0%, #f8db9a 50%, #3EECAC 100%);
+    }
+
+.box{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.box li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 25px;
+    height: 25px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 20s linear infinite;
+    bottom: -150px;
+    border-radius: 50%;
+    background-color: #FF6A88;
+}
+
+.box li:nth-child(1){
+    left: 86%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+
+.box li:nth-child(2){
+    left: 12%;
+    width: 30px;
+    height: 30px;
+    animation-delay: 1.5s;
+    animation-duration: 10s
+}
+.box li:nth-child(3){
+    left: 70%;
+    width: 100px;
+    height: 100px;
+    animation-delay: 5.5s;
+}
+.box li:nth-child(4){
+    left: 45%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 15s
+}
+.box li:nth-child(5){
+    left: 65%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+}
+.box li:nth-child(6){
+    left: 15%;
+    width: 100px;
+    height: 110px;
+    animation-delay: 3.5s;
+}
+
+@keyframes animate{
+    0%{
+        transform: translateY(0) scale(0)
+    }
+    100%{
+        transform: translateY(-800px) scale(2);
+        opacity: 0;
+    }
+}
