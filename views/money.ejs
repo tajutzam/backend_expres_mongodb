@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mainpage.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body class="body objects">
+    <div class="profile-button">
+        <nav class="nav-profile">
+            <img src="profile.png" class="brand-logo" style="width: 30px; height: 30px" />
+            <ul class="navbar-list-left">
+                <li class="navbar-list-item">
+                    <a href="/mainpage" class="navbar-link">Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-list-left">
+                <li class="navbar-list-item">
+                    <a href="/calendar" class="navbar-link">Calendar</a>
+                </li>
+            </ul>
+            <ul class="navbar-list-left">
+                <li class="navbar-list-item">
+                    <a href="/category" class="navbar-link">Category</a>
+                </li>
+            </ul>
+            <ul class="navbar-list-left">
+                <li class="navbar-list-item">
+                    <a href="/money" class="navbar-link">Money</a>
+                </li>
+            </ul>
+            <ul class="navbar-list-right">
+                <li class="navbar-list-item">
+                    <a href="a" class="navbar-link">Inbox</a>
+                </li>
+            </ul>
+            <img src="profile.png" class="profile-logo" onclick="toggleMenu()" style="width: 30px; height: 30px" />
+            <div class="sub-menu-wrap" id="submenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="profile-icon.jpg" class="user-profile-img" />
+                        <h4 id="name_user"></h4>
+                    </div>
+                    <hr class="sub-menu-hr" />
+                    <a href="/profile" class="sub-menu-link">
+                        <i class="fa-solid fa-user sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Edit Profile</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                    <a href="#" class="sub-menu-link">
+                        <i class="fa-solid fa-gear sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Settings & Privacy</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                    <a href="#" class="sub-menu-link">
+                        <i class="fa-solid fa-circle-question sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Help & Support</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                    <a href="#" class="sub-menu-link">
+                        <i class="fa-solid fa-arrow-right-from-bracket sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Logout</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="todo-button-wrapper">
+        <div class="todo-label-wrapper">
+
+        </div>
+    </div>
+    <h1 class="container text-center mb-2">Money</h1>
+    <div class="row" style="margin:  50px;">
+        <div class="col">
+            <button class="btn btn-primary mb-3" onclick="showModal('expense')">Create Expense</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Nama</th>
+                        <th>Ammount</th>
+                    </tr>
+                </thead>
+                <tbody id="expenseTableBody">
+                </tbody>
+            </table>
+        </div>
+        <div class="col">
+            <button class="btn btn-primary mb-3" onclick="showModal('income')"> Create Income</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>Nama</th>
+                        <th>Ammount</th>
+                    </tr>
+                </thead>
+                <tbody id="incomeTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal add -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Create New Item</h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Isi modal -->
+                    <!-- Contoh: Form untuk membuat item baru -->
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" class="form-control" id="name" placeholder="Masukkan nama">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" id="amount" placeholder="Masukkan jumlah amount">
+                        </div>
+                        <input type="text" id="category" hidden>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+                    <button type="button" onclick="handleSave()" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- modal update -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Edit</h5>
+                </div>
+                <div class="modal-body">
+                    <!-- Isi modal -->
+                    <!-- Contoh: Form untuk membuat item baru -->
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" class="form-control" id="name-edit" placeholder="Masukkan nama">
+                        </div>
+                        <div class="form-group">
+                            <label for="amount">Amount</label>
+                            <input type="text" class="form-control" id="amount-edit"
+                                placeholder="Masukkan jumlah amount">
+                        </div>
+                        <input type="text" id="category_edit" hidden>
+                        <input type="text" id="money_id" hidden>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Close</button>
+                    <button type="button" onclick="updateMoney()" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- footer -->
+    <%- include('layouts/footer.ejs') %>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/5ce6a6711b.js" crossorigin="anonymous"></script>
+
+        <script>
+            function showModal(category) {
+                document.getElementById('category').value = category;
+                $('#exampleModal').modal('show'); // Menampilkan modal dengan ID "exampleModal"
+            }
+
+            function closeModal() {
+                $('#exampleModal').modal('hide'); // Menampilkan modal dengan ID "exampleModal"
+                $('#editModal').modal('hide'); // Menampilkan modal dengan ID "exampleModal"
+
+            }
+
+
+            async function handleSave() {
+                let name = document.getElementById('name').value;
+                let amount = document.getElementById('amount').value;
+
+                const id = getCookie('id');
+                await post(document.getElementById('category').value, id, name, amount);
+            }
+
+            function displayExpense(expenseData) {
+                const expenseTableBody = document.getElementById('expenseTableBody');
+                expenseTableBody.innerHTML = ''; // Bersihkan isi tabel sebelum menambahkan data baru
+
+                expenseData.forEach((item, index) => {
+                    const row = `
+            <tr>
+                <td>
+                    <button type='button'  class="edit-icon btn" onclick="editExpense('${item._id}' , 'expense')">✎</button>
+                    <button type='button' class="delete-icon btn" onclick="deleteExpense('${item._id}')">❌</button>
+                </td>
+                <td>${item.name}</td>
+                <td>Rp.${item.amount}</td>
+            </tr>
+        `;
+                    expenseTableBody.innerHTML += row; // Tambahkan baris ke dalam tabel
+                });
+            }
+
+
+
+
+            // Fungsi untuk mengedit pengeluaran
+            async function editExpense(index, category) {
+                const id = getCookie('id');
+                const url = `/api/${category}/${id}/${index}`;
+                document.getElementById('money_id').value = index;
+                var response = await fetch(url);
+                var responseJson = await response.json();
+                document.getElementById('category_edit').value = category;
+                if (response.ok) {
+                    document.getElementById('name-edit').value = responseJson.name;
+                    document.getElementById('amount-edit').value = responseJson.amount;
+                    $('#editModal').modal('show'); // Menampilkan modal dengan ID "exampleModal"
+
+                } else {
+                    alert(responseJson.message);
+                }
+            }
+
+            async function updateMoney() {
+                const id = getCookie('id')
+                const name = document.getElementById('name-edit').value;
+                const amount = document.getElementById('amount-edit').value;
+                const category = document.getElementById('category_edit').value
+                const money_id = document.getElementById('money_id').value
+
+                const url = `/api/${category}/${id}/${money_id}`;
+                var response = await fetch(url, {
+                    method: 'put',
+                    body: JSON.stringify(
+                        {
+                            name: name,
+                            amount: amount
+                        }
+                    ),
+                    headers: {
+                        'content-type': 'application/json'
+                    }
+                })
+                var responseJson = await response.json();
+                console.log(responseJson)
+                if (response.ok) {
+                    alert('success update ' + category)
+
+                } else {
+                    alert('failed update ' + category)
+                }
+                location.reload();
+            }
+
+            // Fungsi untuk menghapus pengeluaran
+            async function deleteExpense(index) {
+                // Lakukan sesuatu ketika tombol hapus diklik
+                const id = getCookie('id')
+                const data = {
+                    expenseId: index
+                }
+                console.log(index);
+
+                var response = await fetch(`/api/expense/${id}`, {
+                    body: JSON.stringify(data),
+                    method: "delete",
+                    headers: {
+                        "content-type": 'Application/json'
+                    }
+                })
+                var responseJson = await response.json();
+                alert(responseJson.message)
+                location.reload();
+            }
+
+
+            async function getData() {
+                const id = getCookie('id');
+                const url1 = `/api/expense/${id}`
+                const url2 = `/api/income/${id}`
+
+                var responseExpense = await fetch(url1);
+                var responseExpenseJson = await responseExpense.json();
+                var responseExpenseBody = responseExpenseJson.expense;
+
+                var responseincome = await fetch(url2);
+                var responseincomeJson = await responseincome.json();
+                var responseincomeBody = responseincomeJson.income;
+
+
+                displayExpense(responseExpenseBody)
+                displayIncome(responseincomeBody)
+            }
+
+
+            async function post(category, id, name, amount) {
+                const url = `/api/${category}/${id}`;
+                const data = {
+                    name: name,
+                    amount: amount
+                }
+                try {
+                    var response = await fetch(url, {
+                        method: 'put',
+                        body: JSON.stringify(data),
+                        headers: {
+                            'content-type': 'application/json'
+                        }
+                    })
+                    if (response.ok) {
+                        alert('Success add ' + category);
+                        location.reload();
+                    } else {
+                        alert("failed to add " + category)
+                    }
+                } catch (error) {
+                    alert(error.message)
+                    console.log(error)
+                }
+            }
+
+            function displayIncome(incomeData) {
+                const incomeTableBody = document.getElementById('incomeTableBody');
+                incomeTableBody.innerHTML = ''; // Bersihkan isi tabel sebelum menambahkan data baru
+
+                incomeData.forEach((item, index) => {
+                    const row = `
+            <tr>
+                <td>
+                    <button type='button'  class="edit-icon btn" onclick="editExpense('${item._id}' , 'income')">✎</button>
+                    <button class="delete-icon btn" onclick="deleteIncome('${item._id}')">❌</button>
+                </td>
+                <td>${item.name}</td>
+                <td>Rp.${item.amount}</td>
+            </tr>
+        `;
+                    incomeTableBody.innerHTML += row; // Tambahkan baris ke dalam tabel
+                });
+            }
+
+            // Fungsi untuk mengedit pendapatan
+
+
+            // Fungsi untuk menghapus pendapatan
+            async function deleteIncome(index) {
+
+                // Lakukan sesuatu ketika tombol hapus diklik
+                const id = getCookie('id')
+                const data = {
+                    incomeId: index
+                }
+                console.log(index);
+
+                var response = await fetch(`/api/income/${id}`, {
+                    body: JSON.stringify(data),
+                    method: "delete",
+                    headers: {
+                        "content-type": 'Application/json'
+                    }
+                })
+                var responseJson = await response.json();
+                alert(responseJson.message)
+                location.reload();
+            }
+
+            getData();
+
+            function getCookie(cookieName) {
+                const cookies = document.cookie.split(";");
+                for (const cookie of cookies) {
+                    const [key, value] = cookie.trim().split("=");
+                    if (key === cookieName) {
+                        return value;
+                    }
+                }
+                return null; // Cookie not found
+            }
+
+        </script>
+</body>
+
+
+</html>

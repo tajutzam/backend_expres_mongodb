@@ -29,8 +29,24 @@ const todosSchema = new Schema({
       urgent: Boolean,
       description: String,
       dateColor: String,
+      category: {
+        type: String,
+        required: true
+      },
     },
   ],
+  expense: [
+    {
+      name: String,
+      amount: Number
+    }
+  ],
+  income: [
+    {
+      name: String,
+      amount: Number
+    }
+  ]
 });
 
 module.exports = registerData = new mongoose.model(

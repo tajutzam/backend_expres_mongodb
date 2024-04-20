@@ -29,6 +29,7 @@ app.use(express.static("website/mainpage"));
 app.use(express.static("website/calendar"));
 
 
+
 app.get("/", (req, res) => {
   res.render("index", {
     title: "Login",
@@ -56,11 +57,28 @@ app.get("/calendar", (req, res) => {
 });
 
 app.get("/profile", (req, res) => {
-    res.render("profile", {
-      title: "Profile",
-      layout: "profile.ejs",
-    });
+  res.render("profile", {
+    title: "Profile",
+    layout: "profile.ejs",
   });
+});
+
+
+app.get("/category", (req, res) => {
+  res.render("category", {
+    title: "category",
+    layout: "category.ejs",
+  });
+});
+
+app.get("/money", (req, res) => {
+  res.render("money", {
+    title: "money",
+    layout: "money.ejs",
+  });
+});
+
+
 
 app.listen(port, () => {
   console.log("Example app");

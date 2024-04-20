@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="mainpage.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+    <title>
+        <%= title %>
+    </title>
+</head>
+
+<body class="body objects">
+    <div class="profile-button">
+        <nav class="nav-profile">
+            <img src="profile.png" class="brand-logo" style="width: 30px; height: 30px" />
+            <ul class="navbar-list-left">
+                <li class="navbar-list-item">
+                    <a href="/mainpage" class="navbar-link">Home</a>
+                </li>
+            </ul>
+            <ul class="navbar-list-left">
+                <li class="navbar-list-item">
+                    <a href="/calendar" class="navbar-link">Calendar</a>
+                </li>
+            </ul>
+            <ul class="navbar-list-left">
+                <li class="navbar-list-item">
+                    <a href="/category" class="navbar-link">Category</a>
+                </li>
+            </ul>
+            <ul class="navbar-list-right">
+                <li class="navbar-list-item">
+                    <a href="a" class="navbar-link">Inbox</a>
+                </li>
+            </ul>
+            <img src="profile.png" class="profile-logo" onclick="toggleMenu()" style="width: 30px; height: 30px" />
+            <div class="sub-menu-wrap" id="submenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="profile-icon.jpg" class="user-profile-img" />
+                        <h4 id="name_user"></h4>
+                    </div>
+                    <hr class="sub-menu-hr" />
+                    <a href="/profile" class="sub-menu-link">
+                        <i class="fa-solid fa-user sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Edit Profile</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                    <a href="#" class="sub-menu-link">
+                        <i class="fa-solid fa-gear sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Settings & Privacy</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                    <a href="#" class="sub-menu-link">
+                        <i class="fa-solid fa-circle-question sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Help & Support</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                    <a href="#" class="sub-menu-link">
+                        <i class="fa-solid fa-arrow-right-from-bracket sub-menu-link-img"></i>
+                        <p class="profile-dropdown-button">Logout</p>
+                    </a>
+                    <!-- <hr class="sub-menu-link-hr"> -->
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="todo-button-wrapper">
+        <div class="todo-label-wrapper">
+
+        </div>
+    </div>
+    <h1 class="container">Category</h1>
+    <div class="container">
+        <h4>Work</h4>
+        <div id="work" class="mb-4"
+            style="width: 100%; border: 1px solid black; padding: 20px; border-radius: 10px; display: flex;">
+        </div>
+        <h4>Assignment</h4>
+        <div id="assignment" class="mb-4"
+            style="width: 100%; border: 1px solid black; padding: 20px; border-radius: 10px; display: flex;"></div>
+        <h4>College</h4>
+        <div id="college" class="mb-4"
+            style="width: 100%; border: 1px solid black; padding: 20px; border-radius: 10px; display: flex;"></div>
+    </div>
+
+    <!-- footer -->
+    <%- include('layouts/footer.ejs') %>
+
+        <script>
+
+            async function getData() {
+                var id = getCookie('id');
+                const url = `/api/todos/${id}`
+                var response = await fetch(url);
+                var responseBody = await response.json();
+                const todos = responseTodos = responseBody.todos;
+
+
+                todos.map((item, index) => {
+                    console.log(item.category)
+                    if (item.category == 'Work') {
+                        const cardTodo = card(
+                            item.urgent,
+                            item.titleBg,
+                            item.title,
+                            item.subtitle,
+                            item.duedate,
+                            item.dateColor,
+                            item.description,
+                            item.id,
+                            item.status,
+                            item.category
+                        );
+
+                        document.getElementById('work').appendChild(cardTodo);
+
+                    } else if (item.category == 'College') {
+                        const cardTodo = card(
+                            item.urgent,
+                            item.titleBg,
+                            item.title,
+                            item.subtitle,
+                            item.duedate,
+                            item.dateColor,
+                            item.description,
+                            item.id,
+                            item.status,
+                            item.category
+                        );
+                        document.getElementById('college').appendChild(cardTodo);
+
+
+
+                    } else if (item.category == 'Assignment') {
+                        const cardTodo = card(
+                            item.urgent,
+                            item.titleBg,
+                            item.title,
+                            item.subtitle,
+                            item.duedate,
+                            item.dateColor,
+                            item.description,
+                            item.id,
+                            item.status,
+                            item.category
+                        );
+                        document.getElementById('assignment').appendChild(cardTodo);
+
+
+                    }
+                })
+
+            }
+
+            function card(
+                urgent,
+                titleColor,
+                title,
+                subtitle,
+                due,
+                dateColor,
+                description,
+                id,
+                status,
+                category
+            ) {
+                let wrapper = document.createElement("div");
+                wrapper.classList.add("card");
+                wrapper.classList.add("card-wrapper");
+                wrapper.style.width = "18rem";
+                wrapper.style.borderRadius = "20px";
+                wrapper.setAttribute("id", "card-wrapper-id");
+
+                console.log(urgent);
+                if (urgent == true) {
+                    wrapper.style.backgroundColor = "#ffb2c5";
+                }
+
+                let body = document.createElement("div");
+                body.classList.add("card-body");
+
+                let cardTitle = document.createElement("div");
+                cardTitle.classList.add("card-title-background");
+                cardTitle.style.backgroundColor = titleColor;
+
+                let h5 = document.createElement("h5");
+                h5.classList.add("card-title");
+                h5.textContent = title;
+                h5.setAttribute("id", "card-title-value");
+
+                let h6 = document.createElement("h6");
+                h6.classList.add("card-subtitle");
+                h6.classList.add("mb-2");
+                h6.classList.add("text-body-secondary");
+                h6.textContent = subtitle;
+                h6.setAttribute("id", "card-subtitle");
+
+                let buttonContent = document.createElement("div");
+                buttonContent.classList.add("row");
+                buttonContent.classList.add("container");
+                buttonContent.classList.add("gap-2");
+                buttonContent.classList.add("justify-content-beetween");
+                //   buttonContent.classList.add("")
+
+                let button = document.createElement("di");
+                button.textContent = "Delete";
+                button.classList.add("btn");
+                button.classList.add("btn-danger");
+                // button.classList.add("button-done");
+
+                button.setAttribute("onclick", `deleteItem('${id}')`);
+                button.setAttribute("id", "button-edit");
+                buttonContent.appendChild(button);
+
+                let h6p2 = document.createElement("h6");
+                h6p2.classList.add("card-subtitle");
+                h6p2.classList.add("mb-2");
+                h6p2.classList.add("text-body-secondary");
+                h6p2.classList.add("due-date");
+                h6p2.style.backgroundColor = dateColor;
+                h6p2.textContent = due;
+                h6p2.setAttribute("id", "card-due");
+
+                let p = document.createElement("p");
+                p.classList.add("card-text");
+                p.textContent = description;
+                p.setAttribute("id", "card-text-value");
+
+                wrapper.appendChild(body);
+                body.append(cardTitle);
+                cardTitle.append(h5);
+                cardTitle.append(h6);
+                body.append(h6p2);
+                body.append(buttonContent);
+                body.append(p);
+                return wrapper;
+            }
+
+
+            async function deleteItem(id) {
+                const idUser = getCookie("id");
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+
+                const raw = JSON.stringify({
+                    todoId: id,
+                });
+
+                console.log(raw);
+
+                const requestOptions = {
+                    method: "delete",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow",
+                };
+
+                fetch(`/api/todos/${idUser}/delete`, requestOptions)
+                    .then((result) => {
+                        alert("Berhasil hapus todo");
+                        window.location.reload();
+                    })
+                    .catch((error) => {
+                        alert(error.message);
+                    });
+            }
+
+
+
+
+
+            function getCookie(cookieName) {
+                const cookies = document.cookie.split(";");
+                for (const cookie of cookies) {
+                    const [key, value] = cookie.trim().split("=");
+                    if (key === cookieName) {
+                        return value;
+                    }
+                }
+                return null; // Cookie not found
+            }
+
+            getData();
+        </script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/5ce6a6711b.js" crossorigin="anonymous"></script>
+</body>
+
+
+</html>
